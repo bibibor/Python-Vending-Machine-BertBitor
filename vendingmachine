@@ -1,0 +1,53 @@
+
+# Python Vending Machine Program
+# Dictionary to store items with codes, names, and prices
+
+
+vending_items = {
+    "A1": {"name": "Cola", "price": 1.50},
+    "A2": {"name": "Water", "price": 1.00},
+    "B1": {"name": "Lay's Chips", "price": 2.00},
+    "B2": {"name": "Chocolate Bar", "price": 2.50},
+    "C1": {"name": "Doritos", "price": 2.50},
+    "C2": {"name": "Fruit Mix Drink", "price": 2.00},
+    "D3": {"name": "Pepsi", "price": 1.50},
+    "D4": {"name": "Croissant", "price": 3.00}
+}
+
+# Display the vending machine menu
+
+print("Welcome to our Vending Machine!!")
+print("Menu: ")
+for code, item in vending_items.items():
+    print(f"{code} - {item['name']} (${item['price']:.2f})")
+
+# Captures the user's selected item
+selected_code = input("\nEnter the code of the item you want: ").upper() 
+
+# Checks if the entered code is valid
+
+if selected_code in vending_items:
+    item = vending_items[selected_code]
+    price = item["price"]
+
+    print(f"\nYou selected {item['name']}") 
+    print(f"Price: ${price:.2f}")
+
+    # Captures the amount of money the user inserts
+    money_inserted = float(input("Insert money: $"))
+
+    # Check if enough money was inserted
+    if money_inserted >= price:
+        change = money_inserted - price
+
+        # Dispenses the item
+        print(f"\nDispensing {item['name']}... Enjoy!")
+
+        # Displays the amount of change
+        print(f"Your change is: ${change:.2f}")
+    else:
+        # Not enough money inserted
+        print("\nInsufficient funds. Money refunded.")
+else:
+    # Invalid item code entered
+    print("\nInvalid selection. Please try again.")
